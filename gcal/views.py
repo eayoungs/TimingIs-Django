@@ -1,5 +1,13 @@
 from django.http import HttpResponse
+from django.template import loader
+
+from .models import CalEvent
 
 
 def index(request):
-    return HttpResponse("Hello, World! You're at the gcal index.")
+    current_events_list = CalEvent.objects.order_by()
+    context = {
+        'current_events_list': current_events_list,
+    }
+    template = loader.get_template('gcal/index.html')
+    return HttpResponse(template.render(context, request))
