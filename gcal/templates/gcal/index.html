@@ -4,7 +4,7 @@
 <html lang="en">
     <head>
         <meta charset="utf-8">
-        <title>Page Template</title>
+        {% block title %}<title>Page Template</title>{% endblock %}
         <!-- <script type="text/javascript" src="d3/d3.js"></script> -->
     </head>
     <body>
@@ -12,14 +12,12 @@
             // Your beautiful D3 code will go here
         </script> -->
         <div class="wrapper">
-            <div class="1">one</div> <!--
-            <div class="2">two</div>
-            <div class="3">three</div>
-            <div class="4">four</div>
-            <div class="5">five</div>
-            <div class="6">six</div> -->
+            <ul> <!--
+                <li class=""><a href="">Button Name</a></li>
+                <li class=""><a href="">Button Name</a></li>
+                <li class=""><a href="">Button Name</a></li> -->
+                <li><a href={% url 'gcal:events_list' %}>Events List</a>
+            </ul>
         </div><br>
-
-        <a href="http://localhost:8000/events_list/">Events 
     </body>
 </html>
