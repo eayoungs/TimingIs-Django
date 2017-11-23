@@ -58,7 +58,6 @@ coverage.xml
 
 # Django stuff:
 #.+/migrations/*
-db.sqlite3
 *.log
 .static_storage/
 .media/
