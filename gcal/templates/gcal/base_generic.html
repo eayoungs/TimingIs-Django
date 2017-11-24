@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        {% block title %}<title>Page Template</title>{% endblock %}
+        <!-- <script type="text/javascript" src="d3/d3.js"></script> -->
+
+        <!-- Add additional CSS in static file -->
+        {% load static %}
+    </head>
+
+    <style>
+        .wrapper {
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          grid-gap: 10px;
+          grid-auto-rows: minmax(100px, auto);
+        }
+        .one {
+          grid-column: 1;
+          grid-row: 4;
+        }
+        .two { 
+          grid-column: 2;
+          grid-row: 4;
+        }
+        .three {
+          grid-column: 3;
+          grid-row: 4;
+        }
+    </style>
+
+    <body>
+   <!-- <script type="text/javascript">
+            // Your beautiful D3 code will go here
+        </script> -->
+        <div class="wrapper">
+            <ul> <!--
+                <li class=""><a href="">Button Name</a></li>
+                <li class=""><a href="">Button Name</a></li>
+                <li class=""><a href="">Button Name</a></li> -->
+                <li> {% block events %}{% endblock %} </li>
+            </ul>
+        </div>
+
+        <div class="wrapper">
+            <div class="one">
+                <a href={% url 'gcal:index' %}>Index</a>
+            </div>
+            <div class="two">
+                <a href={% url 'gcal:events_list' %}>Events List</a>
+            </div>
+        </div>
+
+    </body>
+</html>

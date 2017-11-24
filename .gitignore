@@ -1,3 +1,6 @@
+# Database
+db.sqlite3
+
 # Pycharm
 .idea/*
 
@@ -57,7 +60,7 @@ coverage.xml
 *.pot
 
 # Django stuff:
-#.+/migrations/*
+gcal/migrations/*
 *.log
 .static_storage/
 .media/
