@@ -1,9 +1,15 @@
-{% if current_events_list %}
-    <ul>
-    {% for event in current_events_list %} 
-        <li><a>{{ event.description }}</a></li>
-    {% endfor %}
-    </ul>
-{% else %}
-    <p>No events are available.</p>
+{% extends "./base_generic.html" %}
+
+{% block title %}Event List{% endblock %}
+
+{% block events %}
+    {% if current_events_list %}
+        <ul>
+        {% for event in current_events_list %}
+            <li><a>{{ event.description }}</a></li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>No events are available.</p>
 {% endif %}
+{% endblock %}
