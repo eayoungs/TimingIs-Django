@@ -1,8 +1,13 @@
 from django.http import HttpResponse
 from django.template import loader
+from django.views.generic import TemplateView
 from django.contrib.auth.models import User
 
 from .models import CalEvent
+
+
+class AboutView(TemplateView):
+    template_name = "gcal/about.html"
 
 
 def index(request):
