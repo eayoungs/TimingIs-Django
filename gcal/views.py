@@ -10,6 +10,10 @@ class AboutView(TemplateView):
     template_name = "gcal/about.html"
 
 
+class ContactView(TemplateView):
+    template_name = "gcal/contact.html"
+
+
 def index(request):
     template = loader.get_template("gcal/index.html")
     return HttpResponse(template.render())
