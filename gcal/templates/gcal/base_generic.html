@@ -1,56 +1,118 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8">
-        {% block title %}<title>Page Template</title>{% endblock %}
-        <!-- <script type="text/javascript" src="d3/d3.js"></script> -->
+  <head>
+    <meta charset="utf-8">
+    {% block title %}<title>Page Template</title>{% endblock %}
+    <!-- <script type="text/javascript" src="d3/d3.js"></script> -->
 
-        <!-- Add additional CSS in static file -->
-        {% load static %}
-    </head>
+    <!-- Add additional CSS in static file -->
+    {% load static %}
+  </head>
 
-    <style>
-        .wrapper {
-          display: grid;
-          grid-template-columns: repeat(3, 1fr);
-          grid-gap: 10px;
-          grid-auto-rows: minmax(100px, auto);
-        }
-        .one {
-          grid-column: 1;
-          grid-row: 4;
-        }
-        .two { 
-          grid-column: 2;
-          grid-row: 4;
-        }
-        .three {
-          grid-column: 3;
-          grid-row: 4;
-        }
-    </style>
+  <style>
+    .wrapper {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-gap: 10px;
+      grid-auto-rows: minmax(100px, auto);
+    }
+    .one {
+      grid-column: 1;
+      grid-row: 4;
+    }
+    .two { 
+      grid-column: 2;
+      grid-row: 4;
+    }
+    .three {
+      grid-column: 3;
+      grid-row: 4;
+    }
+    body {
+      padding-top: 20px;
+      padding-bottom: 20px;
+    }
+    .container-narrow {
+      margin: 0 auto;
+      max-width: 700px;
+    }
 
-    <body>
-   <!-- <script type="text/javascript">
-            // Your beautiful D3 code will go here
-        </script> -->
-        <div class="wrapper">
-            <ul> <!--
-                <li class=""><a href="">Button Name</a></li>
-                <li class=""><a href="">Button Name</a></li>
-                <li class=""><a href="">Button Name</a></li> -->
-                <li> {% block events %}{% endblock %} </li>
-            </ul>
-        </div>
+    .container-narrow > hr {
+      margin: 40px 0 0 0;
+    }
+    .jumbotron {
+      margin: 5px 0;
+      text-align: center;
+      background-color:white;
+    }
+    .jumbotron h1 {
+      font-size: 72px;
+      line-height: 1;
+      font-weight: bold;
+    }
+    .jumbotron .btn {
+      font-size: 21px;
+      padding: 14px 24px;
+    }
+    .marketing {
+      margin: 40px 0;
+    }
+    
+    .marketing p + h4 {
+      margin-top: 28px;
+    }
+  </style>
 
-        <div class="wrapper">
-            <div class="one">
-                <a href={% url 'gcal:index' %}>Index</a>
-            </div>
-            <div class="two">
-                <a href={% url 'gcal:events_list' %}>Events List</a>
-            </div>
-        </div>
+  <body>
+ <!-- <script type="text/javascript">
+          // Your beautiful D3 code will go here
+      </script> -->
+      <!-- 
+      <div class="wrapper">
+          <ul>
+              <li class=""><a href="">Button Name</a></li>
+              <li class=""><a href="">Button Name</a></li>
+              <li class=""><a href="">Button Name</a></li>
+              <li> {% block events %}{% endblock %} </li>
+          </ul>
+      </div>
 
-    </body>
+      <div class="wrapper">
+          <div class="one">
+              <a href={% url 'gcal:index' %}>Index</a>
+          </div>
+          <div class="two">
+              <a href={% url 'gcal:events_list' %}>Events List</a>
+          </div>
+      </div> -->
+
+    <div class="container-narrow">
+      <ul class="nav nav-pills pull-right">
+        <li class={{homeBttnClass}}><a href={{homeUrl}}>Home</a></li>
+        <li class={{aboutBttnClass}}><a href={{aboutUrl}}>About</a></li>
+        <li class={{contactBttnClass}}><a href={{contactUrl}}>Contact</a></li>
+      </ul>
+
+      <h3 class="text-muted">Timing is...</h3>
+
+      <hr>
+      <div class="jumbotron">
+        <h1>{{quoteText}}</h1>
+        <p class="lead">{{quoteAttrib}}<a href={{link}}>{{link}}</a></p>
+        <a class="btn btn-large btn-success" href={{appBttnUrl}}>Take Charge</a>
+      </div>
+
+      <div class="row marketing">
+      <div class="col-md-6">
+        <h4>{{subheading1}}</h4>
+        <p>{{subtext1}}</p> 
+      </div>
+
+      <div class="col-md-6">
+        <h4>{{subheading2}}</h4>
+        <p>{{subtext2}}</p>
+      </div>
+    </div>
+
+  </body>
 </html>
