@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>{% block title %}Page Template{% endblock %}</title>
+    <title>{{ title }}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" media="screen">
     <!-- <script type="text/javascript" src="https://d3js.org/d3.v4.min.js"></script> -->
@@ -90,9 +90,9 @@
 
     <div class="container-narrow">
       <ul class="nav nav-pills pull-right">
-        <li class={% block indexBttnClass %}{% endblock %}><a href={% url 'gcal:index' %}>Home</a></li>
-        <li class={% block aboutBttnClass %}{% endblock %}><a href={% url 'gcal:about' %}>About</a></li>
-        <li class={% block contactBttnClass %}{% endblock %}><a href={% url 'gcal:contact' %}>Contact</a></li>
+        <li class={{ indexBttnClass }}><a href={% url 'gcal:index' %}>Home</a></li>
+        <li class={{ aboutBttnClass }}><a href={% url 'gcal:about' %}>About</a></li>
+        <li class={{ contactBttnClass }}><a href={% url 'gcal:contact' %}>Contact</a></li>
       </ul>
 
       <h3 class="text-muted">Timing is...</h3>
@@ -101,7 +101,7 @@
       <div class="jumbotron">
         <h1>{{ quoteText }}</h1>
         <p class="lead">{{ quoteAttrib }}<a href={{link}}>{{link}}</a></p>
-        <a class="btn btn-large btn-success" href={{appBttnUrl}}>Take Charge</a>
+        {% block go_button %}{% endblock %}
       </div>
 
       <div class="row marketing">

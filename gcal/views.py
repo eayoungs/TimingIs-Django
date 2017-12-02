@@ -1,7 +1,7 @@
 from django.http import HttpResponse
 from django.template import loader
 #from django.views.generic import TemplateView
-#from django.contrib.auth.models import User
+from django.contrib.auth.models import User
 from django.shortcuts import render
 
 from .models import CalEvent
@@ -9,6 +9,8 @@ from .models import CalEvent
 
 def contact_view(request):
     return render(request, "gcal/contact.html", {
+        'title': "Contact",
+        'contactBttnClass': "active",
         'quoteText': "Contact",
         'quoteAttrib': "",
         'subheading1': "Google Voice",
@@ -20,6 +22,8 @@ def contact_view(request):
 
 def about_view(request):
     return render(request, "gcal/about.html", {
+        'title': "About",
+        'aboutBttnClass': "active",
         'quoteText': "About",
         'quoteAttrib': "",
         'subheading1': "Read-only parsing of your calendar data",
@@ -43,6 +47,8 @@ def about_view(request):
 
 def index(request):
     return render(request, "gcal/index.html", {
+        'title': "Home",
+        'indexBttnClass': "active",
         'quoteText': "Everything",
         'quoteAttrib': '"This Moment is All there Is" --Rumi',
         'subheading1': "Build your routine, your way",
@@ -55,6 +61,11 @@ def index(request):
         'subtext2': ''' You have to show up for your dreams; no 
                     one can do it for you but we can give 
                     you the tools to stay present '''
+        })
+
+def auth_user(request):
+    return render(request, "gcal/auth_user.html", {
+        'title': "Login"
         })
 
 
