@@ -1,10 +1,30 @@
 from django.http import HttpResponse
 from django.template import loader
-#from django.views.generic import TemplateView
-from django.contrib.auth.models import User
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+
+from oauth2client.client import OAuth2WebServerFlow, OAuth2Credentials
+from config import CLIENT_ID, CLIENT_SECRET, SCOPE, REDIRECT_URI
 
 from .models import CalEvent
+
+
+def callback(request):
+    flow = OAuth2WebServerFlow(CLIENT_ID, CLIENT_SECRET, SCOPE, REDIRECT_URI)
+    return render(request, "gcal/auth_user.html", {
+        'title': flow
+        })
+
+
+def auth_user(request):
+    if 'credentials' not in request.session:
+        return redirect('gcal:callback')
+    else:
+        return render(request, "gcal/auth_user.html", {
+        'title': "Fail"
+        })
+    return render(request, "gcal/auth_user.html", {
+        'title': "Login"
+        })
 
 
 def contact_view(request):
@@ -61,11 +81,6 @@ def index(request):
         'subtext2': ''' You have to show up for your dreams; no 
                     one can do it for you but we can give 
                     you the tools to stay present '''
-        })
-
-def auth_user(request):
-    return render(request, "gcal/auth_user.html", {
-        'title': "Login"
         })
 
 
