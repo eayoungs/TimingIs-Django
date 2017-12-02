@@ -5,14 +5,20 @@ from django.shortcuts import render, redirect
 from oauth2client.client import OAuth2WebServerFlow, OAuth2Credentials
 from config import CLIENT_ID, CLIENT_SECRET, SCOPE, REDIRECT_URI
 
+import re
+
 from .models import CalEvent
 
 
 def callback(request):
     flow = OAuth2WebServerFlow(CLIENT_ID, CLIENT_SECRET, SCOPE, REDIRECT_URI)
-    return render(request, "gcal/auth_user.html", {
-        'title': flow
-        })
+    #if 'code' not in request.args:
+    auth_uri = flow.step1_get_authorize_url()
+    code_uri = str(redirect(auth_uri))
+    code = re.search('([^\?code=].+)', code_uri).group(1)
+    # http://regexr.com/3ev67
+    
+    return redirect(auth_uri)
 
 
 def auth_user(request):
