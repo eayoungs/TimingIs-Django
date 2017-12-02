@@ -12,13 +12,18 @@ from .models import CalEvent
 
 def callback(request):
     flow = OAuth2WebServerFlow(CLIENT_ID, CLIENT_SECRET, SCOPE, REDIRECT_URI)
-    #if 'code' not in request.args:
-    auth_uri = flow.step1_get_authorize_url()
-    code_uri = str(redirect(auth_uri))
-    code = re.search('([^\?code=].+)', code_uri).group(1)
-    # http://regexr.com/3ev67
-    
-    return redirect(auth_uri)
+    if 'code' not in request.path:
+        auth_uri = flow.step1_get_authorize_url()
+        code_uri = str(redirect(auth_uri))
+        code = re.search('([^\?code=].+)', code_uri).group(1)
+        # http://regexr.com/3ev67
+        return redirect(auth_uri)
+    else:
+        code = request.path.get('code')
+        credentials = flow.step2_exchange(code)
+        session['credentials'] = credentials.to_json()
+
+        return redirect('auth_user')
 
 
 def auth_user(request):
