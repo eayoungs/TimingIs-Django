@@ -10,7 +10,7 @@ import re
 from .models import CalEvent
 
 
-def callback(request):
+def view_google_api_callback(request):
     flow = OAuth2WebServerFlow(CLIENT_ID, CLIENT_SECRET, SCOPE, REDIRECT_URI)
     if 'code' not in request.path:
         auth_uri = flow.step1_get_authorize_url()
@@ -26,7 +26,7 @@ def callback(request):
         return redirect('auth_user')
 
 
-def auth_user(request):
+def view_google_api_user_auth(request):
     if 'credentials' not in request.session:
         return redirect('gcal:callback')
     else:
@@ -38,7 +38,7 @@ def auth_user(request):
         })
 
 
-def contact_view(request):
+def view_contact(request):
     return render(request, "gcal/contact.html", {
         'title': "Contact",
         'contactBttnClass': "active",
@@ -51,7 +51,7 @@ def contact_view(request):
         })
 
 
-def about_view(request):
+def view_about(request):
     return render(request, "gcal/about.html", {
         'title': "About",
         'aboutBttnClass': "active",
@@ -76,7 +76,7 @@ def about_view(request):
         })
 
 
-def index(request):
+def view_home(request):
     return render(request, "gcal/index.html", {
         'title': "Home",
         'indexBttnClass': "active",
