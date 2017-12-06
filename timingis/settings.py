@@ -55,7 +55,7 @@ ROOT_URLCONF = 'timingis.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': ['./templates',],#os.path.join(BASE_DIR, 'timingis/templates'),],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
